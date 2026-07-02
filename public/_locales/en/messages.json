@@ -1,0 +1,14 @@
+{
+  "appName": {
+    "message": "Lingyi"
+  },
+  "appDescription": {
+    "message": "Selection translation, full-page translation, and OpenAI-compatible API translation."
+  },
+  "commandTranslatePage": {
+    "message": "Translate current page"
+  },
+  "commandSummaryPage": {
+    "message": "Summarize current page"
+  }
+}

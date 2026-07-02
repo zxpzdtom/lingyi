@@ -1,0 +1,222 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--ly-font-body), Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: var(--ly-font-disp), var(--ly-font-body), Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--ly-font-body, var(--font-sans));
+    background: var(--ly-page, #e7e5e4);
+    color: var(--ly-text, #1c1917);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+  }
+
+  html.ly-popup-document,
+  html.ly-popup-document body,
+  html.ly-popup-document #root {
+    width: 360px;
+    min-height: 0;
+    height: auto;
+    overflow: hidden;
+  }
+
+  html.ly-popup-document body {
+    background: transparent;
+  }
+
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    letter-spacing: inherit;
+  }
+
+  button,
+  select {
+    text-transform: none;
+  }
+
+  button,
+  [type='button'],
+  [type='reset'],
+  [type='submit'] {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+    background: transparent;
+    padding: 0;
+  }
+
+  input,
+  select,
+  textarea {
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  button {
+    cursor: pointer;
+    outline: none;
+    text-align: inherit;
+    transition-property: transform, filter, background-color, border-color, color, box-shadow, opacity;
+    transition-duration: 180ms;
+    transition-timing-function: cubic-bezier(.2, 0, 0, 1);
+  }
+
+  button:focus-visible {
+    outline: 2px solid var(--ly-accent, #4f5bd5);
+    outline-offset: 2px;
+  }
+
+  button:active {
+    transform: scale(.96);
+  }
+
+  button:disabled {
+    cursor: default;
+  }
+}
+
+::selection {
+  background: color-mix(in srgb, var(--ly-accent, #4f5bd5) 24%, transparent);
+}
+
+.soft-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--ly-muted) 45%, transparent) transparent;
+}
+
+.soft-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.soft-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.soft-scrollbar::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--ly-muted) 45%, transparent);
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background-clip: padding-box;
+}
+
+.prompt-editor-input {
+  caret-color: currentColor;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.prompt-editor-input::selection {
+  background: color-mix(in srgb, var(--ly-accent, #4f5bd5) 24%, transparent);
+}
+
+.prompt-editor-input[contenteditable='true']:empty::before {
+  content: attr(data-placeholder);
+  color: var(--ly-faint, #a8a29e);
+  pointer-events: none;
+}
+
+.prompt-editor-token {
+  display: inline-block;
+  position: relative;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  background: var(--ly-accent-soft, #eef2ff) !important;
+  color: var(--ly-accent-soft-ink, #4f5bd5) !important;
+  font-size: .92em;
+  line-height: 1.28;
+  vertical-align: .03em;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--ly-accent, #4f5bd5) 22%, transparent);
+  pointer-events: auto;
+}
+
+.prompt-editor-token::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 0;
+  top: calc(100% + 6px);
+  z-index: 70;
+  width: max-content;
+  max-width: 240px;
+  padding: 6px 8px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--ly-text, #1c1917) 94%, transparent);
+  color: var(--ly-bg, #fff);
+  font-family: var(--ly-font-body, var(--font-sans));
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.35;
+  white-space: normal;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .22);
+  opacity: 0;
+  transform: translateY(-2px);
+  transition: opacity .14s ease, transform .14s ease;
+  pointer-events: none;
+}
+
+.prompt-editor-token:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes ly-blink {
+  0%,
+  80%,
+  100% {
+    opacity: .28;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes ly-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ly-shimmer {
+  from {
+    background-position: -180px 0;
+  }
+  to {
+    background-position: 180px 0;
+  }
+}
+
+@keyframes ly-pop {
+  from {
+    opacity: 0;
+    transform: scale(.85);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

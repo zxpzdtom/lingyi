@@ -1,0 +1,14 @@
+{
+  "appName": {
+    "message": "灵译"
+  },
+  "appDescription": {
+    "message": "划词翻译、整页翻译与第三方 OpenAI-compatible API 翻译插件。"
+  },
+  "commandTranslatePage": {
+    "message": "翻译当前页面"
+  },
+  "commandSummaryPage": {
+    "message": "总结当前页面"
+  }
+}
